@@ -38,13 +38,15 @@ function XY = task5 (C1, C2)
   
   
   dist=sqrt ((C1(1)-C2(1))^2+(C1(2)-C2(2))^2);
-  
+  disp(dist);
+  disp(abs(C1(3)-C2(3)));
   if(dist<C1(3)+C2(3) && dist>abs(C1(3)-C2(3)))
     XY=[fsolve(f(C1,C2),[C1(1)-C1(3),C1(2)-C1(3)]).' ,fsolve(f(C1,C2),[C1(1)+C1(3),C1(2)+C1(3)]).'];
     plot(XY(1,:),XY(2,:),"ro");  
   endif
-  if(abs(dist-(C1(3)+C2(3)))<0.0001)
+  if(abs(dist-(C1(3)+C2(3)))<0.0001 || abs(dist-abs(C1(3)-C2(3)))<0.0001)
     XY=fsolve(f(C1,C2),[C1(1)-C1(3),C1(2)-C1(3)]).'; 
     plot(XY(1,:),XY(2,:),"ro");  
   endif
+
 endfunction
